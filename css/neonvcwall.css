@@ -1,0 +1,26 @@
+article {
+    line-height:1;
+    /*background-color: #111111;*/
+    /*background-clip: content-box;*/
+}
+
+nav {
+    /*background-color: #111111;*/
+}
+
+.board {
+    text-align: center;
+    /*border: 0px solid rgba(255,180,0,0.4);*/
+    border-radius: 4px;
+    width: 600px;
+    margin: 50px auto 0 auto;
+    padding: 20px;
+    /*background-color: #111111;*/
+}
+
+.board p {
+    font-size: 40px;
+    font-family: 'Bungee Shade', cursive;
+    color: #fff;
+    text-transform: uppercase;
+}
