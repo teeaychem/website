@@ -8,7 +8,7 @@ const navdata = `
                   <li><a href="../html/fancyVCWall.html">The fancy VC Wall</a></li>
                   <li><a href="../html/metaethics.html">Metaethics</a></li>
                   <li><a href="http://stanford.edu/~declan/ssp">The School of Strong Philosophy</a></li>
-                  <li><a href="https://github.com/bsparkes">github</a></li>
+                  <li><a href="https://gitlab.com/bsparkes">gitlab</a></li>
                   <li><a href="https://stanford.academia.edu/bsparkes">academia.edu</a></li>
                 </ul>
                 `;
