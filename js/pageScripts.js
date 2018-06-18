@@ -3,7 +3,6 @@ const navdata = `
                   <a href="../html/index.html">bsparkes</a>
                 </h1>
                 <ul>
-
                   <li><a href="../html/VCWall.html">The VC Wall</a></li>
                   <li><a href="../html/fancyVCWall.html">The fancy VC Wall</a></li>
                   <li><a href="../html/metaethics.html">Metaethics</a></li>

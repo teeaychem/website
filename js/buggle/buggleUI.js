@@ -1,5 +1,11 @@
 // tiles are of the form [i, j]
 
+/*
+  Bugs:
+  1. If you select a tile, then go to a possible continuation, then go back 
+
+*/
+
 var wordAttempt = [];
 var usedTiles = [];
 var accessibleTiles = [];
@@ -15,6 +21,7 @@ var tileSize = 40;
 var tileStart = 100;
 var tileX = 100;
 var tileY = 20;
+
 
 
 
@@ -78,7 +85,7 @@ function testLastUsed(key) {
 
 function removeLastUsed() {
   usedTiles.splice(usedTiles.length - 1, 1);
-  wordAttempt = wordAttempt.slice(0, -1)
+  wordAttempt = wordAttempt.slice(0, -1);
 }
 
 

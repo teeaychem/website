@@ -89,16 +89,16 @@ function getAccessCoords(coords, history) {
 
 function getAccessTiles(key, history, node) {
 
-  let accessible = [];
-  let accessKeys = getAccessKeys(key, history)
-  let children = wordTrie.childList(node)
+    let accessible = [];
+    let accessKeys = getAccessKeys(key, history)
+    let children = wordTrie.childList(node)
 
-  for (let d = 0; d < accessKeys.length; d++) {
-    if (children.includes(getLetterFromKey(accessKeys[d]))) {
-      accessible.push(accessKeys[d])
+    for (let d = 0; d < accessKeys.length; d++) {
+        if (children.includes(getLetterFromKey(accessKeys[d]))) {
+            accessible.push(accessKeys[d]);
+        }
     }
-  }
-  return accessible;
+    return accessible;
 }
 
 
