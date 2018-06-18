@@ -29,20 +29,30 @@ var wisdoms = [
 function newWisdom() {
   thewisdom = _.sample(wisdoms)
 
-  $('#wisdomOne').html(thewisdom[0])
-  $('#wisdomTwo').html(thewisdom[1])
-  $('#wisdomThree').html(thewisdom[2])
+  document.getElementById('wisdomOne').innerHTML = thewisdom[0];
+  document.getElementById('wisdomTwo').innerHTML = thewisdom[1];
+  document.getElementById('wisdomThree').innerHTML = thewisdom[2];
+
 }
 
 function mouseReleased(e) {
   newWisdom();
 }
 
-
-$(document).ready(function() {
-
-  newWisdom();
+var callback = function(){
+    newWisdom();
 
   document.getElementsByTagName("article")[0].addEventListener("mouseup", mouseReleased, false);
+};
+if (
+    document.readyState === "complete" ||
+        (document.readyState !== "loading" && !document.documentElement.doScroll)
+) {
+    callback();
+} else {
+    document.addEventListener("DOMContentLoaded", callback);
+}
 
-});
+
+
+
