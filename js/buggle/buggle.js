@@ -46,8 +46,8 @@ function getLetterFromCoord(arr) {
 }
 
 function getLetterFromKey(key) {
-  let coords = tileKeyToCoordDict[key]
-  return tiles[coords[1]][coords[0]]
+  let coords = tileKeyToCoordDict[key];
+  return tiles[coords[1]][coords[0]];
 }
 
 // Well, the below is doing pretty much what I want it to, but it's *very* messy, and needs a clean.
@@ -59,7 +59,6 @@ function getAccessKeys(key, history) {
   let j = coords[1];
   history = (history || []);
   let accessible = [];
-
   for (let x = i - 1; x < i + 2; x++) {
     for (let y = j - 1; y < j + 2; y++) {
       if (x < 0 || y < 0 || x >= boardSize || y >= boardSize || history.includes(tileCoordToKeyDict[[x, y]])) {} else {
@@ -78,7 +77,8 @@ function getAccessCoords(coords, history) {
 
   for (let x = i - 1; x < i + 2; x++) {
     for (let y = j - 1; y < j + 2; y++) {
-      if (x < 0 || y < 0 || x >= boardSize || y >= boardSize || history.includes(tileCoordToKeyDict[[x, y]])) {} else {
+      if (x < 0 || y < 0 || x >= boardSize || y >= boardSize || history.includes(tileCoordToKeyDict[[x, y]])) {}
+      else {
         accessible.push([x, y]);
       }
     }
@@ -88,24 +88,43 @@ function getAccessCoords(coords, history) {
 
 
 function getAccessTiles(key, history, node) {
-
-    let accessible = [];
-    let accessKeys = getAccessKeys(key, history)
-    let children = wordTrie.childList(node)
-
-    for (let d = 0; d < accessKeys.length; d++) {
-        if (children.includes(getLetterFromKey(accessKeys[d]))) {
-            accessible.push(accessKeys[d]);
-        }
+  
+  let accessible = [];
+  let accessKeys = getAccessKeys(key, history);
+  let children = wordTrie.childList(node);
+  
+  for (let d = 0; d < accessKeys.length; d++) {
+    if (children.includes(getLetterFromKey(accessKeys[d]))) {
+      accessible.push(accessKeys[d]);
     }
-    return accessible;
+  }
+  return accessible;
 }
 
 
 
+function findWordsFromTile(key, history, word, node) {
+  
+  key = key;
+  word = word || '';
+  let letter = getLetterFromKey(key);
+  word = word + letter;
+  history = history || [];
+  history.push(key);
+  node = wordTrie.goto(word);
+  let accessibler= getAccessTiles(key, history, node);
+  for (let i=0; i < accessibler.length; i++) {
+    let key = accessibler[i];
+    findWordsFromTile(key, history, word, node);
+  }
+  if (node.end == true) {
+    console.log(word);
+  }
+}
+
 var wordTrie = new trie();
 
-buggleList = [];
+var buggleList = [];
 
 fetch('../js/buggle/betterlist.txt')
   .then(response => response.text())
@@ -117,7 +136,13 @@ fetch('../js/buggle/betterlist.txt')
       wordTrie.insert(word);
     }
     console.log('trie dictionary built');
+
+    console.log('going for the loop')
+    for (let i=0; i < tiles.length; i++) {
+      findWordsFromTile(i, [], '',  wordTrie.goto());
+    }
     return buggleList;
   });
 
-// ugh, i need to learn promise stuff for this to work
+
+
